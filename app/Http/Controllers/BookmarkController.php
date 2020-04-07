@@ -47,9 +47,12 @@ class BookmarkController extends Controller
      * @param  \App\Models\Bookmark  $bookmark
      * @return \Illuminate\Http\Response
      */
-    public function show(Bookmark $bookmark)
+    public function show($id)
     {
         //
+        $bookmark = Bookmark::findOrFail($id);
+
+        return view('bookmarks.show', compact('bookmark'));
     }
 
     /**
