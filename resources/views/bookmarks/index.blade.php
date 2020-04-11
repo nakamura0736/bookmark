@@ -19,7 +19,7 @@
                     @foreach($bookmarks as $bookmark)
                       <tr>
                         <td>{{ $bookmark->id }}</td>
-                        <td><a href="{{ $bookmark->id }}">{{ $bookmark->title }}</a></td>
+                        <td><a href="{{route('bookmarks.show', $bookmark)}}">{{ $bookmark->title }}</a></td>
                       </tr>
                     @endforeach
                   </table>

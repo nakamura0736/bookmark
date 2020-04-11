@@ -20,4 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('bookmarks', 'BookmarkController@index');
-Route::get('bookmarks/{id}', 'BookmarkController@show')->where('id', '[0-9]+');
+Route::get('bookmarks/{bookmark}', 'BookmarkController@show')->name('bookmarks.show');
