@@ -12,17 +12,21 @@
                     <a href="{{route('bookmarks.create')}}" class="btn btn-primary">新規登録</a>
                   </div>
                   <table class="table">
-                    <!-- test -->
                     <thead>
                       <tr>
                         <th>ID</th>
                         <th>タイトル</th>
-                      </tr>
+                        <th>アクション</th>
+                     </tr>
                     </thead>
                     @foreach($bookmarks as $bookmark)
                       <tr>
                         <td>{{ $bookmark->id }}</td>
-                        <td><a href="{{route('bookmarks.show', $bookmark)}}">{{ $bookmark->title }}</a></td>
+                        <td><a href="{{ $bookmark->url }}">{{ $bookmark->title }}</a></td>
+                        <td>
+                          <a href="{{route('bookmarks.show', $bookmark)}}" class="btn btn-secondary btn-sm">表示</a>
+                          <a href="{{route('bookmarks.edit', $bookmark)}}" class="btn btn-secondary btn-sm">編集</a>
+                        </td>
                       </tr>
                     @endforeach
                   </table>

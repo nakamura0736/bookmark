@@ -26,6 +26,12 @@
                       <td>{{ $bookmark->created_at->format('Y年m月d日') }}</td>
                     </tr>
                   </table>
+
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                        <a href="{{ route('bookmarks.index') }}" class="btn btn-secondary">一覧へ戻る</a>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
