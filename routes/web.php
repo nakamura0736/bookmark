@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('bookmarks', 'BookmarkController');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', 'BookmarkController@index');
+    Route::resource('bookmarks', 'BookmarkController');
+});
