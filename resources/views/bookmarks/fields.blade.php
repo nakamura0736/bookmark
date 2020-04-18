@@ -1,13 +1,23 @@
 <div class="form-group row">
     <label for="inputTitle" class="col-sm-2 col-form-label">タイトル</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="imputTitle" name="title" value="{{ $bookmark->title ?? ''}}" placeholder="タイトル">
+        <input type="text" class="form-control @error('title') is-invalid @enderror" id="imputTitle" name="title" value="{{ $bookmark->title ?? ''}}" placeholder="タイトル">
+        @error('title')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror   
     </div>
 </div>
 <div class="form-group row">
     <label for="inputUrl" class="col-sm-2 col-form-label">URL</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputUrl" name="url" value="{{ $bookmark->url ?? ''}}" placeholder="URL">
+        <input type="text" class="form-control @error('url') is-invalid @enderror" id="inputUrl" name="url" value="{{ $bookmark->url ?? ''}}" placeholder="URL">
+        @error('url')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror      
     </div>
 </div>
 <div class="form-group row">
@@ -18,6 +28,11 @@
             id="inputDescription" rows="5"
         >{{ $bookmark->description ?? ''}}
         </textarea>
+        @error('description')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror 
     </div>
 </div>
 
