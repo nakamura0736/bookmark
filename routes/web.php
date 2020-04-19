@@ -20,4 +20,5 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'BookmarkController@index');
     Route::resource('bookmarks', 'BookmarkController');
+    Route::resource('tags', 'TagController');
 });
