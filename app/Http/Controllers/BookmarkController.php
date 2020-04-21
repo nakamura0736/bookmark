@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
+use App\Models\Tag;
 use App\Http\Requests\BookmarkRequest;
 
 class BookmarkController extends Controller
@@ -28,7 +29,8 @@ class BookmarkController extends Controller
     public function create()
     {
         //
-        return view('bookmarks.create');
+        $tags = Tag::pluck('title', 'id')->toArray();
+        return view('bookmarks.create', compact('tags'));
     }
 
     /**
@@ -40,7 +42,10 @@ class BookmarkController extends Controller
     public function store(BookmarkRequest $request)
     {
         //
-        Bookmark::create($request->all());
+        $bookmark = Bookmark::create($request->all());
+        $bookmark->tags()->sync($request->tags);
+
+
         return redirect()->route('bookmarks.index')
         ->with('status', 'ブックマークを登録しました。');
     }
@@ -54,8 +59,6 @@ class BookmarkController extends Controller
     public function show(Bookmark $bookmark)
     {
         //
-        
-
         return view('bookmarks.show', compact('bookmark'));
     }
 
@@ -68,7 +71,8 @@ class BookmarkController extends Controller
     public function edit(Bookmark $bookmark)
     {
         //
-        return view('bookmarks.edit', compact('bookmark'));
+        $tags = Tag::pluck('title', 'id')->toArray();
+        return view('bookmarks.edit', compact('bookmark', 'tags'));
     }
 
     /**
@@ -82,6 +86,8 @@ class BookmarkController extends Controller
     {
         //
         $bookmark->update($request->all());
+        $bookmark->tags()->sync($request->tags);
+
         return redirect()->route('bookmarks.edit', $bookmark)
         ->with('status', 'ブックマークを更新しました。');
     }
@@ -96,6 +102,7 @@ class BookmarkController extends Controller
     {
         //
         $bookmark->delete();
+        $bookmark->tags()->detach();
         return redirect()
             ->route('bookmarks.index')
             ->with('status', 'ブックマークを削除しました。');

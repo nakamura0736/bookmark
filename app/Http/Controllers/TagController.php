@@ -83,7 +83,7 @@ class TagController extends Controller
         //
         $tag->update($request->all());
         return redirect()->route('tags.edit', $tag)
-        ->with('status', 'ブックマークを更新しました。');
+        ->with('status', 'タグを更新しました。');
     }
 
     /**
@@ -98,6 +98,6 @@ class TagController extends Controller
         $tag->delete();
         return redirect()
             ->route('tags.index')
-            ->with('status', 'ブックマークを削除しました。');
+            ->with('status', 'タグを削除しました。');
     }
 }
