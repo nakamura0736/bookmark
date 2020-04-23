@@ -1,6 +1,10 @@
 # Bookmarkアプリ
 Laravelチュートリアルに沿ってBookmarkアプリを作成しました。
 
+
+### UIはこんな感じです
+https://youtu.be/-6fOftmWSI4
+
 ### 参考資料
 作って学ぶLaravel入門講座(Youtube)
 
